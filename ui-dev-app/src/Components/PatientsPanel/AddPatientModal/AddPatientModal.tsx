@@ -15,6 +15,18 @@ export const AddPatientModal: React.FC<AddPatientModalProps> = ({open, handleClo
             age: age,
             notes: notes
         });
+        resetState();
+    }
+
+    const handleCloseClick = () => {
+        handleClose();
+        resetState();
+    }
+
+    const resetState = () => {
+        setPatientName('');
+        setAge(0);
+        setNotes('');
     }
 
     return (
@@ -66,7 +78,7 @@ export const AddPatientModal: React.FC<AddPatientModalProps> = ({open, handleClo
                     <Button variant="contained" color="primary" onClick={addPatientClick}>
                         Create
                     </Button>
-                    <Button variant="outlined" color="secondary" onClick={handleClose} sx={{ml: 2}}>
+                    <Button variant="outlined" color="secondary" onClick={handleCloseClick} sx={{ml: 2}}>
                         Cancel
                     </Button>
                 </Box>
