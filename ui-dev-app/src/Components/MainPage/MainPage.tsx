@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
-import './MainPage.css';
 import PatientsPanel from "../PatientsPanel/PatientsPanel";
+import {Button, TextField} from "@mui/material";
+import {StyledPredictContainer} from "./MainPage.styles";
 
 const MainPage: React.FC = () => {
     const [text, setText] = useState<string>('');
@@ -22,18 +23,24 @@ const MainPage: React.FC = () => {
     return (
         <div className="App">
             <header className="App-header">
-                <h1>Suicide Likelihood Prediction</h1>
-                <textarea
+                <h2>Suicide Likelihood Prediction</h2>
+                <StyledPredictContainer
+                    fullWidth
+                    color='info'
+                    label="Patient Post"
+                    margin="normal"
+                    multiline
+                    rows={4}
                     value={text}
-                    onChange={(e) => setText(e.target.value)}
                     placeholder="Enter text here..."
+                    onChange={(e) => setText(e.target.value)}
                 />
-                <button onClick={handlePredict}>Predict</button>
-                {prediction !== null && <p>Prediction Score: {prediction}</p>}
-                <PatientsPanel></PatientsPanel>
+                <Button variant='contained' onClick={handlePredict}>Predict </Button>
+                    {prediction !== null && <p>Prediction Score: {prediction}</p>}
+                    <PatientsPanel></PatientsPanel>
             </header>
         </div>
-    );
+);
 };
 
 export default MainPage;

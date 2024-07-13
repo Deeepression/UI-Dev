@@ -64,7 +64,6 @@ export const AddPatientModal: React.FC<AddPatientModalProps> = ({ open, handleCl
                 transform: 'translate(-50%, -50%)',
                 width: 400,
                 bgcolor: 'background.paper',
-                border: '2px solid #000',
                 boxShadow: 24,
                 p: 4,
             }}>
@@ -106,7 +105,7 @@ export const AddPatientModal: React.FC<AddPatientModalProps> = ({ open, handleCl
                     <Button variant="contained" color="primary" onClick={addPatientClick}>
                         Create
                     </Button>
-                    <Button variant="outlined" color="secondary" onClick={handleCloseClick} sx={{ ml: 2 }}>
+                    <Button variant="outlined" color="error" onClick={handleCloseClick} sx={{ ml: 2 }}>
                         Cancel
                     </Button>
                 </Box>

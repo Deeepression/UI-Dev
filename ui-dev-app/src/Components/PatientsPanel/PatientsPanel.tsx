@@ -83,7 +83,7 @@ const PatientsPanel: React.FC = () => {
                 sx={{
                     position: 'absolute',
                     left: drawerOpen ? 340 : 0,
-                    top: 16,
+                    top: 80,
                     transition: 'left 0.3s',
                     backgroundColor: '#FFF'
                 }}
