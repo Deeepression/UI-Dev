@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link as RouterLink} from 'react-router-dom';
-import {AppBar, Typography, Button} from '@mui/material';
+import {AppBar, Button} from '@mui/material';
 import {StyledToolBar} from "./NavBar.styles";
 
 

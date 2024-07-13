@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import PatientsPanel from "../PatientsPanel/PatientsPanel";
-import {Button, TextField} from "@mui/material";
+import {Button} from "@mui/material";
 import {StyledPredictContainer} from "./MainPage.styles";
 
 const MainPage: React.FC = () => {

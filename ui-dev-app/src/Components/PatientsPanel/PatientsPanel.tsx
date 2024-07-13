@@ -58,7 +58,7 @@ const PatientsPanel: React.FC = () => {
         <Box display="flex">
             <Drawer
                 variant="persistent"
-                anchor="left"
+                anchor="right"
                 open={drawerOpen}
                 sx={{
                     width: drawerOpen ? 340 : 0,
@@ -82,13 +82,13 @@ const PatientsPanel: React.FC = () => {
                 onClick={toggleDrawer}
                 sx={{
                     position: 'absolute',
-                    left: drawerOpen ? 340 : 0,
+                    right: drawerOpen ? 340 : 0,
                     top: 80,
-                    transition: 'left 0.3s',
-                    backgroundColor: '#FFF'
+                    transition: 'right 0.3s',
+                    backgroundColor: '#f5f5f5'
                 }}
             >
-                {drawerOpen ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+                {drawerOpen ? <ChevronRightIcon /> : <ChevronLeftIcon /> }
             </IconButton>
         </Box>
     );
