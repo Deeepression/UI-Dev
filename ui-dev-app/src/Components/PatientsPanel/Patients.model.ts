@@ -3,6 +3,7 @@ export interface Patient {
     patientName: string;
     age: number;
     notes: string;
+    socialMediaLink: string;
 }
 
 export type AddPatientModalProps = {

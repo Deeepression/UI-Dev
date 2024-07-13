@@ -1,33 +1,54 @@
-import React, {useState} from "react";
+import React, { useReducer } from "react";
 import {
     Box, Button, Modal, TextField, Typography
 } from '@mui/material';
-import {AddPatientModalProps} from "../Patients.model";
+import {AddPatientModalProps, Patient} from "../Patients.model";
 
-export const AddPatientModal: React.FC<AddPatientModalProps> = ({open, handleClose, addPatient}) => {
-    const [patientName, setPatientName] = useState('');
-    const [age, setAge] = useState(0);
-    const [notes, setNotes] = useState('');
+const initialState: Partial<Patient> = {
+    patientName: '',
+    age: 0,
+    notes: '',
+    socialMediaLink: ''
+};
+
+const reducer = (state: Partial<Patient>, action: { type: any; payload?: any; }) => {
+    switch (action.type) {
+        case 'SET_PATIENT_NAME':
+            return { ...state, patientName: action.payload };
+        case 'SET_AGE':
+            return { ...state, age: action.payload };
+        case 'SET_NOTES':
+            return { ...state, notes: action.payload };
+        case 'SET_SOCIAL_MEDIA_LINK':
+            return { ...state, socialMediaLink: action.payload };
+        case 'RESET':
+            return initialState;
+        default:
+            return state;
+    }
+};
+
+export const AddPatientModal: React.FC<AddPatientModalProps> = ({ open, handleClose, addPatient }) => {
+    const [state, dispatch] = useReducer(reducer, initialState);
 
     const addPatientClick = () => {
         addPatient({
-            patientName: patientName,
-            age: age,
-            notes: notes
+            patientName: state.patientName,
+            age: state.age,
+            notes: state.notes,
+            socialMediaLink: state.socialMediaLink
         });
         resetState();
-    }
+    };
 
     const handleCloseClick = () => {
         handleClose();
         resetState();
-    }
+    };
 
     const resetState = () => {
-        setPatientName('');
-        setAge(0);
-        setNotes('');
-    }
+        dispatch({ type: 'RESET' });
+    };
 
     return (
         <Modal
@@ -54,16 +75,23 @@ export const AddPatientModal: React.FC<AddPatientModalProps> = ({open, handleClo
                     fullWidth
                     label="Name"
                     margin="normal"
-                    value={patientName}
-                    onChange={(e) => setPatientName(e.target.value)}
+                    value={state.patientName}
+                    onChange={(e) => dispatch({ type: 'SET_PATIENT_NAME', payload: e.target.value })}
                 />
                 <TextField
                     fullWidth
                     label="Age"
                     type="number"
                     margin="normal"
-                    value={age}
-                    onChange={(e) => setAge(Number(e.target.value))}
+                    value={state.age}
+                    onChange={(e) => dispatch({ type: 'SET_AGE', payload: Number(e.target.value) })}
+                />
+                <TextField
+                    fullWidth
+                    label="Social Media Link"
+                    margin="normal"
+                    value={state.socialMediaLink}
+                    onChange={(e) => dispatch({ type: 'SET_SOCIAL_MEDIA_LINK', payload: e.target.value })}
                 />
                 <TextField
                     fullWidth
@@ -71,18 +99,18 @@ export const AddPatientModal: React.FC<AddPatientModalProps> = ({open, handleClo
                     margin="normal"
                     multiline
                     rows={4}
-                    value={notes}
-                    onChange={(e) => setNotes(e.target.value)}
+                    value={state.notes}
+                    onChange={(e) => dispatch({ type: 'SET_NOTES', payload: e.target.value })}
                 />
                 <Box mt={2}>
                     <Button variant="contained" color="primary" onClick={addPatientClick}>
                         Create
                     </Button>
-                    <Button variant="outlined" color="secondary" onClick={handleCloseClick} sx={{ml: 2}}>
+                    <Button variant="outlined" color="secondary" onClick={handleCloseClick} sx={{ ml: 2 }}>
                         Cancel
                     </Button>
                 </Box>
             </Box>
         </Modal>
     );
-}
+};
