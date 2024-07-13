@@ -3,9 +3,9 @@ import {
     Box, Button, Drawer, IconButton
 } from '@mui/material';
 import {styled} from '@mui/system';
-import {AddPatientModal} from "./AddPatientModal/AddPatientModal";
+import {AddPatientModal} from "../AddPatientModal/AddPatientModal";
 import {Patient} from "./Patients.model";
-import {PatientsList} from "./PatientsList/PatientsList";
+import {PatientsList} from "../PatientsList/PatientsList";
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 

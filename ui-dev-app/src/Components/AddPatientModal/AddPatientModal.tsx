@@ -2,7 +2,7 @@ import React, { useReducer } from "react";
 import {
     Box, Button, Modal, TextField, Typography
 } from '@mui/material';
-import {AddPatientModalProps, Patient} from "../Patients.model";
+import {AddPatientModalProps, Patient} from "../PatientsPanel/Patients.model";
 
 const initialState: Partial<Patient> = {
     patientName: '',

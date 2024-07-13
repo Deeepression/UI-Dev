@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import './MainPage.css';
+import PatientsPanel from "../PatientsPanel/PatientsPanel";
 
 const MainPage: React.FC = () => {
     const [text, setText] = useState<string>('');
@@ -11,7 +12,7 @@ const MainPage: React.FC = () => {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ text }),
+            body: JSON.stringify({text}),
         });
 
         const data = await response.json();
@@ -19,16 +20,19 @@ const MainPage: React.FC = () => {
     };
 
     return (
-        <>
-            <h1>Suicide Likelihood Prediction</h1>
-            <textarea
-                value={text}
-                onChange={(e) => setText(e.target.value)}
-                placeholder="Enter text here..."
-            />
-            <button onClick={handlePredict}>Predict</button>
-            {prediction !== null && <p>Prediction Score: {prediction}</p>}
-        </>
+        <div className="App">
+            <header className="App-header">
+                <h1>Suicide Likelihood Prediction</h1>
+                <textarea
+                    value={text}
+                    onChange={(e) => setText(e.target.value)}
+                    placeholder="Enter text here..."
+                />
+                <button onClick={handlePredict}>Predict</button>
+                {prediction !== null && <p>Prediction Score: {prediction}</p>}
+                <PatientsPanel></PatientsPanel>
+            </header>
+        </div>
     );
 };
 

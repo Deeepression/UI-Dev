@@ -1,16 +1,19 @@
 import React from 'react';
-import './App.css';
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import MainPage from "./Components/MainPage/MainPage";
-import PatientsPanel from "./Components/PatientsPanel/PatientsPanel";
+import PatientPage from "./Components/PatientPage/PatientPage";
+import './App.css';
+import Navbar from "./Components/NavBar/NavBar";
 
 const App: React.FC = () => {
     return (
-        <div className="App">
-            <header className="App-header">
-                <MainPage></MainPage>
-                <PatientsPanel></PatientsPanel>
-            </header>
-        </div>
+        <Router>
+            <Navbar />
+            <Routes>
+                <Route path="/" element={<MainPage />} />
+                <Route path="/patient/:id" element={<PatientPage />} />
+            </Routes>
+        </Router>
     );
 };
 
