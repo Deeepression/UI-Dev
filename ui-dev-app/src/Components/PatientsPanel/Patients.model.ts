@@ -5,6 +5,7 @@ export interface Patient {
     age: number;
     notes: string;
     socialMediaLink: string;
+    generalStatus: PatientStatus;
 }
 
 export type AddPatientModalProps = {
@@ -25,3 +26,5 @@ export type Post = {
     prediction?: number;
     date: string;
 }
+
+export type PatientStatus = 'GOOD' | 'MEDIUM' | 'BAD';

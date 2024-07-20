@@ -4,6 +4,7 @@ import MainPage from "./Components/MainPage/MainPage";
 import PatientPage from "./Components/PatientPage/PatientPage";
 import './App.css';
 import Navbar from "./Components/NavBar/NavBar";
+import TrackingPage from "./TrackingPage";
 
 const App: React.FC = () => {
     return (
@@ -11,6 +12,8 @@ const App: React.FC = () => {
             <Navbar />
             <Routes>
                 <Route path="/" element={<MainPage />} />
+                <Route path="/patient" element={<PatientPage />} />
+                <Route path="/tracking" element={<TrackingPage />} />
                 <Route path="/patient/:id" element={<PatientPage />} />
             </Routes>
         </Router>

@@ -1,46 +1,46 @@
-import React, {useState} from 'react';
-import PatientsPanel from "../PatientsPanel/PatientsPanel";
-import {Button} from "@mui/material";
-import {StyledPredictContainer} from "./MainPage.styles";
+import React from 'react';
+import {IconButton} from "@mui/material";
+import {Link as RouterLink} from "react-router-dom";
+import {StyledIconButton, StyledSvgsContainer} from "./MainPage.styles";
 
 const MainPage: React.FC = () => {
-    const [text, setText] = useState<string>('');
-    const [prediction, setPrediction] = useState<number | null>(null);
-
-    const handlePredict = async () => {
-        const response = await fetch('http://localhost:8080/api/predict', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({text}),
-        });
-
-        const data = await response.json();
-        setPrediction(data.score);
-    };
-
     return (
-        <div className="App">
-            <header className="App-header">
-                <h2>Suicide Likelihood Prediction</h2>
-                <StyledPredictContainer
-                    fullWidth
-                    color='info'
-                    label="Patient Post"
-                    margin="normal"
-                    multiline
-                    rows={4}
-                    value={text}
-                    placeholder="Enter text here..."
-                    onChange={(e) => setText(e.target.value)}
-                />
-                <Button variant='contained' onClick={handlePredict}>Predict </Button>
-                    {prediction !== null && <p>Prediction Score: {prediction}</p>}
-                    <PatientsPanel></PatientsPanel>
-            </header>
+        <div className="App-header">
+            <h2>My Panel</h2>
+            <StyledSvgsContainer>
+                <IconButton
+                    component={RouterLink}
+                    to="/patient"
+                    color="inherit"
+                >
+                    <StyledIconButton>
+                        <img src="/patients.svg" alt="Patients" style={{width: 160, height: 160}}/>
+                        <div>My Patients</div>
+                    </StyledIconButton>
+                </IconButton>
+                <IconButton
+                    component={RouterLink}
+                    to="/tracking"
+                    color="inherit"
+                >
+                    <StyledIconButton>
+                        <img src="/tracking.svg" alt="Tracking" style={{width: 160, height: 160}}/>
+                        <div>Tracking List</div>
+                    </StyledIconButton>
+                </IconButton>
+                <IconButton
+                    component={RouterLink}
+                    to="/contact"
+                    color="inherit"
+                >
+                    <StyledIconButton>
+                        <img src="/settings.svg" alt="Settings" style={{width: 160, height: 160}}/>
+                        <div>Settings</div>
+                    </StyledIconButton>
+                </IconButton>
+            </StyledSvgsContainer>
         </div>
-);
+    );
 };
 
 export default MainPage;
