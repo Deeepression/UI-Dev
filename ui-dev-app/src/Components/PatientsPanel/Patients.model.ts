@@ -1,4 +1,5 @@
 export interface Patient {
+    posts: Post[];
     id: number;
     patientName: string;
     age: number;
@@ -15,4 +16,12 @@ export type AddPatientModalProps = {
 export type PatientsListProps = {
     patients: Patient[];
     deletePatient: (id: number) => void;
+}
+
+export type Post = {
+    id?: string;
+    source: string;
+    text: string;
+    prediction?: number;
+    date: string;
 }

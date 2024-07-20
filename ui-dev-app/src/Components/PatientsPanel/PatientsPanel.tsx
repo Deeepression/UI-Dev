@@ -8,6 +8,7 @@ import {Patient} from "./Patients.model";
 import {PatientsList} from "../PatientsList/PatientsList";
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import {StyledPatientsPanel} from "./PatientsPanel.styles";
 
 const AddPatientButton = styled(Button)(({theme}) => ({
     marginTop: theme.spacing(2),
@@ -55,42 +56,44 @@ const PatientsPanel: React.FC = () => {
     const toggleDrawer = () => setDrawerOpen(!drawerOpen);
 
     return (
-        <Box display="flex">
-            <Drawer
-                variant="persistent"
-                anchor="right"
-                open={drawerOpen}
-                sx={{
-                    width: drawerOpen ? 340 : 0,
-                    flexShrink: 0,
-                    '& .MuiDrawer-paper': {
-                        width: 340,
-                        boxSizing: 'border-box',
-                        transition: 'width 0.3s',
-                    },
-                }}
-            >
-                <Box sx={{overflow: 'auto'}}>
-                    <PatientsList patients={patients} deletePatient={deletePatient} />
-                    <AddPatientButton variant="contained" color="primary" onClick={handleOpen}>
-                        Add New Patient
-                    </AddPatientButton>
-                    <AddPatientModal open={open} handleClose={handleClose} addPatient={addPatient}/>
-                </Box>
-            </Drawer>
-            <IconButton
-                onClick={toggleDrawer}
-                sx={{
-                    position: 'absolute',
-                    right: drawerOpen ? 340 : 0,
-                    top: 80,
-                    transition: 'right 0.3s',
-                    backgroundColor: '#f5f5f5'
-                }}
-            >
-                {drawerOpen ? <ChevronRightIcon /> : <ChevronLeftIcon /> }
-            </IconButton>
-        </Box>
+        <StyledPatientsPanel>
+            <Box display="flex">
+                <Drawer
+                    variant="persistent"
+                    anchor="right"
+                    open={drawerOpen}
+                    sx={{
+                        width: drawerOpen ? 340 : 0,
+                        flexShrink: 0,
+                        '& .MuiDrawer-paper': {
+                            width: 340,
+                            boxSizing: 'border-box',
+                            transition: 'width 0.3s',
+                        },
+                    }}
+                >
+                    <Box sx={{overflow: 'auto'}}>
+                        <PatientsList patients={patients} deletePatient={deletePatient}/>
+                        <AddPatientButton variant="contained" color="primary" onClick={handleOpen}>
+                            Add New Patient
+                        </AddPatientButton>
+                        <AddPatientModal open={open} handleClose={handleClose} addPatient={addPatient}/>
+                    </Box>
+                </Drawer>
+                <IconButton
+                    onClick={toggleDrawer}
+                    sx={{
+                        position: 'absolute',
+                        right: drawerOpen ? 340 : 0,
+                        top: 80,
+                        transition: 'right 0.3s',
+                        backgroundColor: '#f5f5f5'
+                    }}
+                >
+                    {drawerOpen ? <ChevronRightIcon/> : <ChevronLeftIcon/>}
+                </IconButton>
+            </Box>
+        </StyledPatientsPanel>
     );
 };
 
