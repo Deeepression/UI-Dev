@@ -79,7 +79,7 @@ const PatientPage: React.FC = () => {
                 <Typography style={{margin: '20px'}} variant="h5">Posts</Typography>
                 <Grid container spacing={2}>
                     {patient.posts.map((post: Post) => (
-                        <Grid item xs={12} sm={6} md={4} lg={3} key={post.id}>
+                        <Grid item xs={4} sm={4} md={4} lg={4} key={post.id}>
                             <PostBox {...post} />
                         </Grid>
                     ))}
