@@ -43,7 +43,7 @@ const PatientsPanel: React.FC = () => {
         handleClose();
     };
 
-    const deletePatient = async (id: number) => {
+    const deletePatient = async (id: string) => {
         await fetch(`http://localhost:8080/api/patients/${id}`, {
             method: 'DELETE',
         });
