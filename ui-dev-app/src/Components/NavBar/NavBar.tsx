@@ -10,8 +10,8 @@ const Navbar: React.FC = () => {
         <AppBar position="static" color="default">
             <StyledToolBar>
                 <Button component={RouterLink} to="/" color="inherit">Home</Button>
-                <Button component={RouterLink} to="/about" color="inherit">About</Button>
-                <Button component={RouterLink} to="/contact" color="inherit">Contact</Button>
+                <Button component={RouterLink} to="/patient" color="inherit">My Patients</Button>
+                <Button component={RouterLink} to="/tracking" color="inherit">Tracking List</Button>
             </StyledToolBar>
         </AppBar>
     );
