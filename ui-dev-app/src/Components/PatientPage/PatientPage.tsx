@@ -108,7 +108,7 @@ const PatientPage: React.FC = () => {
                     handleAddPost={handleAddPost}
                 />
             </Box> : <StyledEmptyListMessage>
-                There are no Patients, Please add to start.
+                Select Some Patient From The list, Or add new Patient to start.
             </StyledEmptyListMessage>}
             <PatientsPanel/>
         </>
