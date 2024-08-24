@@ -1,5 +1,5 @@
-import {styled} from "@mui/system";
-import {Paper} from "@mui/material";
+import { styled } from '@mui/system'
+import { Paper } from '@mui/material'
 
 export const StyledEmptyListMessage = styled('div')`
     min-height: 100vh;
@@ -9,19 +9,19 @@ export const StyledEmptyListMessage = styled('div')`
     justify-content: center;
     font-size: calc(10px + 2vmin);
     color: black;
-`;
+`
 
 export const StyledStatusBox = styled('div')`
     display: flex;
     padding-left: 150px;
-`;
+`
 
 export const StyledStatusBoxInnerImg = styled('img')`
     padding-left: 10px;
-`;
+`
 
 export const StyledUserDataBox = styled('div')`
-`;
+`
 
 export const StyledUserPaper = styled(Paper)`
     display: flex;
@@ -29,5 +29,9 @@ export const StyledUserPaper = styled(Paper)`
     align-items: center;
     font-size: calc(10px + 2vmin);
     color: black;
-`;
+`
 
+export const StyledButtonsWrapper = styled('div')`
+    display: flex;
+    gap: 10px;
+`

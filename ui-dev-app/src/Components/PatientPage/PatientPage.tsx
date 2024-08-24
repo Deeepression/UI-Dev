@@ -1,18 +1,19 @@
-import React, {useEffect, useState} from 'react';
-import {useParams} from 'react-router-dom';
-import {Box, Typography, Paper, Button, Grid} from '@mui/material';
-import {Patient, Post} from "../PatientsPanel/Patients.model";
-import PatientsPanel from "../PatientsPanel/PatientsPanel";
-import AddPostModal from "../AddPostModal/AddPostModal";
-import PostBox from "../PostBox/PostBox";
+import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
+import { Box, Button, Grid, Typography } from '@mui/material'
+import { Patient, Post } from '../PatientsPanel/Patients.model'
+import PatientsPanel from '../PatientsPanel/PatientsPanel'
+import AddPostModal from '../AddPostModal/AddPostModal'
+import PostBox from '../PostBox/PostBox'
 import {
+    StyledButtonsWrapper,
     StyledEmptyListMessage,
     StyledStatusBox,
     StyledStatusBoxInnerImg,
     StyledUserDataBox,
     StyledUserPaper
-} from "./PatientPage.styles";
-import {statusSvgMap} from "./PatientPage.consts";
+} from './PatientPage.styles'
+import { statusSvgMap } from './PatientPage.consts'
 
 const PatientPage: React.FC = () => {
     const {id} = useParams<{ id: string }>();
@@ -55,6 +56,15 @@ const PatientPage: React.FC = () => {
         }
     };
 
+    const handleFetchPosts = async () => {
+        const response = await fetch(`http://localhost:8080/api/patients/${id}/fetchPosts`);
+
+        if (response.ok) {
+            const updatedPatient = await response.json();
+            setPatient(updatedPatient);
+        }
+    };
+
     return (
         <>
             {patient ? <Box p={2}>
@@ -84,9 +94,14 @@ const PatientPage: React.FC = () => {
                         </Grid>
                     ))}
                 </Grid>
-                <Button variant="contained" color="primary" onClick={handleOpen}>
-                    Add Post
-                </Button>
+                <StyledButtonsWrapper>
+                    <Button variant="contained" color="primary" onClick={handleOpen}>
+                        Add Post
+                    </Button>
+                    <Button variant="contained" color="primary" onClick={handleFetchPosts}>
+                        Fetch Posts
+                    </Button>
+                </StyledButtonsWrapper>
                 <AddPostModal
                     open={open}
                     handleClose={handleClose}

@@ -29,7 +29,7 @@ const TrackingPage: React.FC = () => {
             </Typography>
             <Grid container spacing={2}>
                 {patients.map((patient) => (
-                    <Grid item xs={12} sm={6} md={4} key={patient.id}>
+                    <Grid item xs={12} sm={6} md={4} key={patient.id} style={{ marginBottom: '30px'}}>
                         <StyledUserPaper elevation={3} sx={{p: 2, height: '100%'}}>
                             <StyledUserDataBox>
                                 <Typography variant="h6">
