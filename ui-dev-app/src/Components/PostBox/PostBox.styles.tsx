@@ -6,6 +6,12 @@ export const StyledPostMetadata = styled('div')`
     flex-direction: column;
 `;
 
+export const StyledPostContainer = styled('div')`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+`;
+
 export const EllipsisText = styled(Typography)({
   overflow: 'hidden',
   whiteSpace: 'nowrap',
