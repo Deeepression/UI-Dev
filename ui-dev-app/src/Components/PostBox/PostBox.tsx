@@ -3,6 +3,7 @@ import { Paper, Typography, Button, CircularProgress, Box } from "@mui/material"
 import { Post } from "../PatientsPanel/Patients.model";
 import { StyledPostMetadata } from "./PostBox.styles";
 import { useParams } from "react-router-dom";
+import { EllipsisWithTooltip } from './PostElement'
 
 const PostBox: React.FC<Post> = ({ id, source, text, prediction, date }) => {
     const { id: patientId } = useParams<{ id: string }>();
@@ -56,7 +57,7 @@ const PostBox: React.FC<Post> = ({ id, source, text, prediction, date }) => {
                     <CircularProgress />
                 </Box>
             )}
-            <Typography variant="h6">{text}</Typography>
+            <Typography variant="h6"><EllipsisWithTooltip text={text} /></Typography>
             <StyledPostMetadata>
                 <Typography variant="body2"><strong>Date: </strong>{date}</Typography>
                 <Typography variant="body2"><strong>Source: </strong>{source}</Typography>
