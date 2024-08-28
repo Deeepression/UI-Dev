@@ -56,9 +56,9 @@ const PostBox: React.FC<Post> = ({ id, source, text, prediction, date }) => {
                                  pathTransitionDuration: 0.5,
 
                                  // Colors
-                                 pathColor: `rgba(255, 10, 10, 80)`,
+                                 pathColor: `rgb(208, 106, 106)`,
                                  textColor: '#000',
-                                 trailColor: '#d6d6d6',
+                                 trailColor: '#87b976',
                                  backgroundColor: '#3e98c7',
                                })}/>
         </StyledPostMetadata>
