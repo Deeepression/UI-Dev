@@ -42,3 +42,10 @@ export const StyledButtonsWrapper = styled('div')`
     display: flex;
     gap: 10px;
 `
+
+export const UserHeaderWrapper = styled('div')`
+    //padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+`;

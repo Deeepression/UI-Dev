@@ -3,11 +3,11 @@ import React from 'react'
 import { Patient, Post } from '../PatientsPanel/Patients.model'
 
 type ProgressChartProps = {
-  patient: Patient,
+  posts?: Post[],
 }
 
-export const ProgressChart: React.FC<ProgressChartProps> = ({ patient }) => {
-  const chartData = patient?.posts
+export const ProgressChart: React.FC<ProgressChartProps> = ({ posts = [] }) => {
+  const chartData = posts
     .map((post: Post) => {
       const date = new Date(post.date)
       return {
@@ -31,7 +31,7 @@ export const ProgressChart: React.FC<ProgressChartProps> = ({ patient }) => {
         <CartesianGrid strokeDasharray="3 3"/>
         <XAxis dataKey="date" tick={{ fontSize: '14px' }}/>
         <YAxis domain={[0.0, 100.0]} tick={{ fontSize: '14px' }}/>
-        <Tooltip labelStyle={{fontSize: '14px'}} itemStyle={{fontSize: '14px'}}/>
+        <Tooltip labelStyle={{ fontSize: '14px' }} itemStyle={{ fontSize: '14px' }}/>
         <Line type="monotone" dataKey="Prediction" stroke="#8884d8"/>
       </LineChart>
     </ResponsiveContainer>

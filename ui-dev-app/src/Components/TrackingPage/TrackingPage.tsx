@@ -24,7 +24,7 @@ const TrackingPage: React.FC = () => {
           <Grid container spacing={1}>
               {patients.map((patient) => (
                 <Grid item xs={12} sm={12} md={12} key={patient.id} style={{ marginBottom: '10px'}}>
-                    <UserBox patient={patient}/>
+                    <UserBox patient={patient} posts={patient.posts}/>
                 </Grid>
               ))}
           </Grid>

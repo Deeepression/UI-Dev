@@ -2,13 +2,14 @@ import { StyledStatusBox, StyledUserDataBox, StyledUserPaper } from '../PatientP
 import { Typography } from '@mui/material'
 import { ProgressChart } from '../ProgressChart/ProgressChart'
 import React from 'react'
-import { Patient } from '../PatientsPanel/Patients.model'
+import { Patient, Post } from '../PatientsPanel/Patients.model'
 
 type UserBoxProps = {
   patient: Patient,
+  posts: Post[],
 }
 
-export const UserBox: React.FC<UserBoxProps> = ({ patient }) => {
+export const UserBox: React.FC<UserBoxProps> = ({ patient, posts }) => {
   return (
     <StyledUserPaper elevation={3} sx={{ p: 2, mb: 2 }}>
       <StyledUserDataBox>
@@ -19,8 +20,8 @@ export const UserBox: React.FC<UserBoxProps> = ({ patient }) => {
         </Typography>
       </StyledUserDataBox>
       <StyledStatusBox>
-        <ProgressChart patient={patient}/>
+        <ProgressChart posts={posts}/>
       </StyledStatusBox>
     </StyledUserPaper>
-  );
+  )
 }
