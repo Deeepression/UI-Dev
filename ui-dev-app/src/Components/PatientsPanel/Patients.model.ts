@@ -28,3 +28,9 @@ export type Post = {
 }
 
 export type PatientStatus = 'GOOD' | 'MEDIUM' | 'BAD';
+
+export enum PatientStatuses {
+    GOOD = 'GOOD',
+    MEDIUM = 'MEDIUM',
+    BAD = 'BAD',
+}
