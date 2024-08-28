@@ -1,5 +1,5 @@
 import { styled } from '@mui/system'
-import { Paper } from '@mui/material'
+import { Box, Paper } from '@mui/material'
 
 export const StyledEmptyListMessage = styled('div')`
     min-height: 100vh;
@@ -11,16 +11,23 @@ export const StyledEmptyListMessage = styled('div')`
     color: black;
 `
 
-export const StyledStatusBox = styled('div')`
+export const StyledStatusBox = styled(Box)`
+    width: 100%;
+    height: 200px; /* Ensure a fixed height for the chart */
     display: flex;
-    padding-left: 150px;
-`
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+`;
 
 export const StyledStatusBoxInnerImg = styled('img')`
     padding-left: 10px;
 `
 
 export const StyledUserDataBox = styled('div')`
+    display: flex;
+    flex-direction: column;
+    width: 450px;
 `
 
 export const StyledUserPaper = styled(Paper)`
@@ -35,3 +42,10 @@ export const StyledButtonsWrapper = styled('div')`
     display: flex;
     gap: 10px;
 `
+
+export const UserHeaderWrapper = styled('div')`
+    //padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+`;

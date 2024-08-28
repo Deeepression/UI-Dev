@@ -1,24 +1,20 @@
-import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import { Box, Button, Grid, Typography } from '@mui/material'
-import { Patient, Post } from '../PatientsPanel/Patients.model'
-import PatientsPanel from '../PatientsPanel/PatientsPanel'
-import AddPostModal from '../AddPostModal/AddPostModal'
-import PostBox from '../PostBox/PostBox'
-import {
-    StyledButtonsWrapper,
-    StyledEmptyListMessage,
-    StyledStatusBox,
-    StyledStatusBoxInnerImg,
-    StyledUserDataBox,
-    StyledUserPaper
-} from './PatientPage.styles'
-import { statusSvgMap } from './PatientPage.consts'
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { Box, Button, Grid, Typography, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
+import { Patient, Post } from '../PatientsPanel/Patients.model';
+import PatientsPanel from '../PatientsPanel/PatientsPanel';
+import AddPostModal from '../AddPostModal/AddPostModal';
+import PostBox from '../PostBox/PostBox';
+import { StyledButtonsWrapper, StyledEmptyListMessage, UserHeaderWrapper } from './PatientPage.styles'
+import { UserBox } from '../UserBox/UserBox';
+import { PostRange, PostRanges } from './PatientPage.consts'
+import { filterPosts } from './PatientPage.utils'
 
 const PatientPage: React.FC = () => {
-    const {id} = useParams<{ id: string }>();
+    const { id } = useParams<{ id: string }>();
     const [patient, setPatient] = useState<Patient | null>(null);
     const [open, setOpen] = useState(false);
+    const [filter, setFilter] = useState<PostRange>(PostRanges.ALL);
 
     useEffect(() => {
         const fetchPatient = async () => {
@@ -40,14 +36,13 @@ const PatientPage: React.FC = () => {
         setOpen(false);
     };
 
-
     const handleAddPost = async (newPost: Post) => {
         const response = await fetch(`http://localhost:8080/api/patients/${id}/posts`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
             },
-            body: JSON.stringify(newPost)
+            body: JSON.stringify(newPost),
         });
 
         if (response.ok) {
@@ -66,32 +61,32 @@ const PatientPage: React.FC = () => {
     };
 
     return (
-        <>
-            {patient ? <Box p={2}>
-                <StyledUserPaper elevation={3} sx={{p: 2, mb: 2}}>
-                    <StyledUserDataBox>
-                        <Typography variant="h4">{patient.patientName}</Typography>
-                        <Typography variant="body1"><strong>Age: </strong>{patient.age}</Typography>
-                        <Typography variant="body1"><strong>Notes: </strong>{patient.notes}</Typography>
-                        <Typography variant="body1"><strong>Social Media Link: </strong>{patient.socialMediaLink}
-                        </Typography>
-                    </StyledUserDataBox>
-                    <StyledStatusBox>
-                        <Typography variant="body1"><strong>General Status:</strong> </Typography>
-                        <StyledStatusBoxInnerImg src={statusSvgMap[patient.generalStatus]}
-                                                 alt={statusSvgMap[patient.generalStatus]}
-                                                 style={{
-                                                     width: 24,
-                                                     height: 24
-                                                 }}/>
-                    </StyledStatusBox>
-                </StyledUserPaper>
-                <Typography style={{margin: '20px'}} variant="h5">Posts</Typography>
+      <>
+          {patient ? (
+            <Box p={2}>
+                <UserBox patient={patient} posts={filterPosts(patient.posts, filter)}/>
+                <UserHeaderWrapper>
+                    <Typography style={{ margin: '20px' }} variant="h4">Posts</Typography>
+                    <FormControl variant="outlined" style={{ minWidth: 120, marginBottom: '20px' }}>
+                        <InputLabel id="date-filter-label">Filter By Date</InputLabel>
+                        <Select
+                          labelId="date-filter-label"
+                          value={filter}
+                          onChange={(e) => setFilter(e.target.value as PostRange)}
+                          label="Filter By Date"
+                        >
+                            <MenuItem value="All">All</MenuItem>
+                            <MenuItem value="Last Day">Last Day</MenuItem>
+                            <MenuItem value="Last Week">Last Week</MenuItem>
+                            <MenuItem value="Last Month">Last Month</MenuItem>
+                        </Select>
+                    </FormControl>
+                </UserHeaderWrapper>
                 <Grid container spacing={2}>
-                    {patient.posts.map((post: Post) => (
-                        <Grid item xs={4} sm={4} md={4} lg={4} key={post.id}>
-                            <PostBox {...post} />
-                        </Grid>
+                    {filterPosts(patient.posts, filter).map((post: Post) => (
+                      <Grid item xs={4} sm={4} md={4} lg={4} key={post.id}>
+                          <PostBox {...post} />
+                      </Grid>
                     ))}
                 </Grid>
                 <StyledButtonsWrapper>
@@ -103,15 +98,18 @@ const PatientPage: React.FC = () => {
                     </Button>
                 </StyledButtonsWrapper>
                 <AddPostModal
-                    open={open}
-                    handleClose={handleClose}
-                    handleAddPost={handleAddPost}
+                  open={open}
+                  handleClose={handleClose}
+                  handleAddPost={handleAddPost}
                 />
-            </Box> : <StyledEmptyListMessage>
+            </Box>
+          ) : (
+            <StyledEmptyListMessage>
                 Select Some Patient From The list, Or add new Patient to start.
-            </StyledEmptyListMessage>}
-            <PatientsPanel/>
-        </>
+            </StyledEmptyListMessage>
+          )}
+          <PatientsPanel />
+      </>
     );
 };
 

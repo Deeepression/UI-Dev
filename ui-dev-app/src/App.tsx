@@ -4,7 +4,7 @@ import MainPage from "./Components/MainPage/MainPage";
 import PatientPage from "./Components/PatientPage/PatientPage";
 import './App.css';
 import Navbar from "./Components/NavBar/NavBar";
-import TrackingPage from "./TrackingPage";
+import TrackingPage from "./Components/TrackingPage/TrackingPage";
 
 const App: React.FC = () => {
     return (
