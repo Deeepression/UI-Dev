@@ -56,7 +56,7 @@ const PostBox: React.FC<Post> = ({ id, source, text, prediction, date }) => {
                                  pathTransitionDuration: 0.5,
 
                                  // Colors
-                                 pathColor: `rgba(255, 10, 10, ${currentPrediction})`,
+                                 pathColor: `rgba(255, 10, 10, 80)`,
                                  textColor: '#000',
                                  trailColor: '#d6d6d6',
                                  backgroundColor: '#3e98c7',

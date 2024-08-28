@@ -29,7 +29,7 @@ const PatientPage: React.FC = () => {
             }
         };
 
-        fetchPatient();
+        id && fetchPatient();
     }, [id]);
 
     const handleOpen = () => {
