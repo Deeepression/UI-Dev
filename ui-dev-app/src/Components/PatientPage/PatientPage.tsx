@@ -14,6 +14,7 @@ import {
     StyledUserPaper
 } from './PatientPage.styles'
 import { statusSvgMap } from './PatientPage.consts'
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
 
 const PatientPage: React.FC = () => {
     const {id} = useParams<{ id: string }>();
@@ -65,6 +66,25 @@ const PatientPage: React.FC = () => {
         }
     };
 
+    // Prepare data for the chart
+      const chartData = patient?.posts
+          .map((post) => {
+              const date = new Date(post.date);
+              return {
+                  date: date.toLocaleDateString(),
+                  yearMonthDay: `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`, // "YYYY-MM-DD" format
+                  prediction: post.prediction, // Assuming 'predictionPercentage' is a field in 'Post'
+              };
+          })
+          .sort((a, b) => {
+              const [aYear, aMonth, aDay] = a.yearMonthDay.split('-').map(Number);
+              const [bYear, bMonth, bDay] = b.yearMonthDay.split('-').map(Number);
+
+              if (aYear !== bYear) return aYear - bYear;
+              if (aMonth !== bMonth) return aMonth - bMonth;
+              return aDay - bDay;
+          }) || [];
+
     return (
         <>
             {patient ? <Box p={2}>
@@ -94,6 +114,18 @@ const PatientPage: React.FC = () => {
                         </Grid>
                     ))}
                 </Grid>
+
+                <Typography variant="h5" style={{ margin: '20px' }}>Progress Chart</Typography>
+                <ResponsiveContainer width="100%" height={300}>
+                    <LineChart data={chartData}>
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="date" />
+                        <YAxis domain={[0.0, 1.0]} />
+                        <Tooltip />
+                        <Line type="monotone" dataKey="prediction" stroke="#8884d8" />
+                    </LineChart>
+                </ResponsiveContainer>
+
                 <StyledButtonsWrapper>
                     <Button variant="contained" color="primary" onClick={handleOpen}>
                         Add Post
