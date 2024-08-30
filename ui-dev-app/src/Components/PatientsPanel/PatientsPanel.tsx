@@ -7,10 +7,12 @@ import { PatientsList } from '../PatientsList/PatientsList'
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
 import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 import { StyledPatientsPanel } from './PatientsPanel.styles'
+import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 import Loader from '../Loader/Loader'
 
 const AddPatientButton = styled(Button)(({ theme }) => ({
   marginTop: theme.spacing(2),
+  textTransform: 'none'
 }))
 
 const PatientsPanel: React.FC = () => {
@@ -77,7 +79,7 @@ const PatientsPanel: React.FC = () => {
           <Box sx={{ overflow: 'auto' }}>
             {loading ? <Loader/> : (
               <PatientsList patients={patients} deletePatient={deletePatient}/>)}
-            <AddPatientButton variant="contained" color="primary" onClick={handleOpen}>
+            <AddPatientButton startIcon={<PersonAddAlt1Icon />} color="inherit" variant="outlined" onClick={handleOpen}>
               Add New Patient
             </AddPatientButton>
             <AddPatientModal open={open} handleClose={handleClose} addPatient={addPatient}/>

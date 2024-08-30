@@ -3,7 +3,7 @@ import { Typography } from '@mui/material'
 
 export const StyledPostMetadata = styled('div')`
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 `;
 
 export const StyledPostContainer = styled('div')`

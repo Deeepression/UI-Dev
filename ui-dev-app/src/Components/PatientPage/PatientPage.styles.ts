@@ -47,15 +47,17 @@ export const StyledUserPaper = styled(Paper)`
     align-items: center;
     font-size: calc(10px + 2vmin);
     color: black;
+    border-radius: 20px;
 `
 
 export const StyledButtonsWrapper = styled('div')`
+    margin-top: 20px;
     display: flex;
     gap: 10px;
 `
 
 export const UserHeaderWrapper = styled('div')`
-    //padding: 10px;
+    padding-top: 30px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;

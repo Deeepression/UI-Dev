@@ -1,8 +1,6 @@
-import React, { useReducer } from "react";
-import {
-    Box, Button, Modal, TextField, Typography
-} from '@mui/material';
-import {AddPatientModalProps, Patient} from "../PatientsPanel/Patients.model";
+import React, { useReducer } from 'react'
+import { Box, Button, Modal, TextField, Typography } from '@mui/material'
+import { AddPatientModalProps, Patient } from '../PatientsPanel/Patients.model'
 
 const initialState: Partial<Patient> = {
     patientName: '',
@@ -102,10 +100,10 @@ export const AddPatientModal: React.FC<AddPatientModalProps> = ({ open, handleCl
                     onChange={(e) => dispatch({ type: 'SET_NOTES', payload: e.target.value })}
                 />
                 <Box mt={2}>
-                    <Button variant="contained" color="primary" onClick={addPatientClick}>
+                    <Button sx={{ textTransform: 'none' }} color="primary" variant="contained" onClick={addPatientClick}>
                         Create
                     </Button>
-                    <Button variant="outlined" color="error" onClick={handleCloseClick} sx={{ ml: 2 }}>
+                    <Button  sx={{ textTransform: 'none', ml: 2 }}  variant="outlined" color="error" onClick={handleCloseClick} >
                         Cancel
                     </Button>
                 </Box>
