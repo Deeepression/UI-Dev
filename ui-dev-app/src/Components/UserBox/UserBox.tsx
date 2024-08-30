@@ -8,7 +8,7 @@ import { Typography } from '@mui/material'
 import { ProgressChart } from '../ProgressChart/ProgressChart'
 import React from 'react'
 import { Patient, Post } from '../PatientsPanel/Patients.model'
-import { calculateAverageStatus } from './UserBox.utils'
+import { calculateAverageStatusIcon } from './UserBox.utils'
 
 type UserBoxProps = {
   patient: Patient,
@@ -26,8 +26,8 @@ export const UserBox: React.FC<UserBoxProps> = ({ patient, posts }) => {
         </Typography>
         <StyledAverageStatusBox>
           <Typography variant="body1"><strong>Average Status:</strong> </Typography>
-          <StyledStatusBoxInnerImg src={calculateAverageStatus(posts)}
-                                   alt={calculateAverageStatus(posts)}
+          <StyledStatusBoxInnerImg src={calculateAverageStatusIcon(posts)}
+                                   alt={calculateAverageStatusIcon(posts)}
                                  />
         </StyledAverageStatusBox>
       </StyledUserDataBox>
