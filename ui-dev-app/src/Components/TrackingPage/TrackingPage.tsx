@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Patient } from '../PatientsPanel/Patients.model'
-import { Box, Grid, Typography } from '@mui/material'
+import { Container, Grid, Typography } from '@mui/material'
 import { UserBox } from '../UserBox/UserBox'
+import Stack from '@mui/material/Stack'
 
 const TrackingPage: React.FC = () => {
     const [patients, setPatients] = useState<Patient[]>([]);
@@ -17,8 +18,9 @@ const TrackingPage: React.FC = () => {
     };
 
     return (
-      <Box p={2}>
-          <Typography variant="h4" gutterBottom>
+      <Stack sx={{ padding: '64px' }} >
+        <Container maxWidth='xl'>
+          <Typography variant="h4" sx={{ marginBottom: '30px'}}>
               Patients List
           </Typography>
           <Grid container spacing={1}>
@@ -28,7 +30,8 @@ const TrackingPage: React.FC = () => {
                 </Grid>
               ))}
           </Grid>
-      </Box>
+        </Container>
+      </Stack>
     );
 };
 

@@ -7,6 +7,7 @@ import { ChartTable } from './ChartTable'
 import { TrafficPie } from './TrafficPie'
 import { calculateAverageStatus, calculateAverageStatusString } from '../UserBox/UserBox.utils'
 import { DashCard } from './DashCard'
+import Stack from '@mui/material/Stack'
 
 const Dashboard: React.FC = () => {
   const [patients, setPatients] = useState<Patient[]>([])
@@ -53,11 +54,11 @@ const Dashboard: React.FC = () => {
   }
 
   return (
-    <Box p={2}>
-      <Typography variant="h4" gutterBottom>
-        Patients Dashboard
-      </Typography>
-      <Container maxWidth="xl" sx={{ py: '64px' }}>
+    <Stack sx={{ padding: '64px' }} >
+      <Container maxWidth='xl'>
+        <Typography variant="h4" sx={{ marginBottom: '30px'}}>
+          Dashboard
+        </Typography>
         <Grid container spacing={3}>
           <Grid lg={3} sm={6} xs={12}>
             <DashCard label="Average Age"
@@ -83,7 +84,7 @@ const Dashboard: React.FC = () => {
           </Grid>
         </Grid>
       </Container>
-    </Box>
+    </Stack>
   )
 }
 
