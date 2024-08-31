@@ -93,10 +93,10 @@ const PatientPage: React.FC = () => {
                     ))}
                 </Grid>
                 <StyledButtonsWrapper>
-                    <Button sx={{ textTransform: 'none' }} color="inherit" startIcon={<PostAddIcon />} onClick={handleOpen}>
+                    <Button sx={{ textTransform: 'none' }} color="inherit" variant="outlined" startIcon={<PostAddIcon />} onClick={handleOpen}>
                         Add Post
                     </Button>
-                    <Button sx={{ textTransform: 'none' }} color="inherit" startIcon={<DownloadIcon />} onClick={handleFetchPosts}>
+                    <Button sx={{ textTransform: 'none' }} color="inherit" variant="outlined" startIcon={<DownloadIcon />} onClick={handleFetchPosts}>
                         Fetch Posts
                     </Button>
                 </StyledButtonsWrapper>

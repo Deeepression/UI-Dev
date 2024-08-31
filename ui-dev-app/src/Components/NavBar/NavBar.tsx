@@ -2,7 +2,10 @@ import React from 'react';
 import {Link as RouterLink} from 'react-router-dom';
 import { AppBar, Button, Toolbar, Box } from '@mui/material';
 import {StyledToolBar} from "./NavBar.styles";
-
+import HomeIcon from '@mui/icons-material/Home';
+import GroupIcon from '@mui/icons-material/Group';
+import TimelineIcon from '@mui/icons-material/Timeline';
+import GridViewIcon from '@mui/icons-material/GridView';
 
 const Navbar: React.FC = () => {
 
@@ -12,10 +15,10 @@ const Navbar: React.FC = () => {
                  <Box sx={{ display: 'flex', alignItems: 'center' }}>
                  <img src={'finalprojectlogo.png'} alt="Logo" style={{ height: '45px', marginRight: '16px',borderRadius: '50%' }} />
                 </Box>
-                <Button component={RouterLink} to="/" color="inherit">Home</Button>
-                <Button component={RouterLink} to="/patient" color="inherit">My Patients</Button>
-                <Button component={RouterLink} to="/tracking" color="inherit">Tracking List</Button>
-                <Button component={RouterLink} to="/dashboard" color="inherit">Dashboard</Button>
+                <Button component={RouterLink} to="/" startIcon={<HomeIcon fontSize="large"/>} color="inherit"></Button>
+                <Button component={RouterLink} to="/patient" startIcon={<GroupIcon fontSize="large"/>} color="inherit"></Button>
+                <Button component={RouterLink} to="/tracking" startIcon={<TimelineIcon fontSize="large" />} color="inherit"></Button>
+                <Button component={RouterLink} to="/dashboard" startIcon={<GridViewIcon fontSize="large" />} color="inherit"></Button>
             </StyledToolBar>
         </AppBar>
     );
