@@ -41,7 +41,7 @@ export function TrafficPie({ chartSeries, labels, sx }: TrafficProps): React.JSX
                   />
                   <Typography variant="h6">{label}</Typography>
                   <Typography color="text.secondary" variant="subtitle2">
-                    {item}%
+                    {(item / chartSeries.length * 100).toFixed(0)}%
                   </Typography>
                 </Stack>
               );
