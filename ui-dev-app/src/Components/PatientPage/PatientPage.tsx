@@ -12,6 +12,7 @@ import { PostRange, PostRanges } from './PatientPage.consts'
 import { filterPosts } from './PatientPage.utils'
 import PostAddIcon from '@mui/icons-material/PostAdd'
 import DownloadIcon from '@mui/icons-material/Download'
+import Loader from '../Loader/Loader'
 
 const PatientPage: React.FC = () => {
     const { id } = useParams<{ id: string }>();
@@ -20,15 +21,27 @@ const PatientPage: React.FC = () => {
     const [filter, setFilter] = useState<PostRange>(PostRanges.ALL);
 
     useEffect(() => {
-        const fetchPatient = async () => {
-            const response = await fetch(`http://localhost:8080/api/patients/${id}`);
+        const fetchPatient = async (userId: string) => {
+            const response = await fetch(`http://localhost:8080/api/patients/${userId}`);
             if (response.status === 200) {
                 const data = await response.json();
                 setPatient(data);
             }
         };
 
-        id && fetchPatient();
+        const fetchPatients = async () => {
+            const response = await fetch('http://localhost:8080/api/patients')
+            return await response.json()
+        }
+
+        if (id) {
+            fetchPatient(id);
+        } else {
+            fetchPatients().then((data: Patient[]) => {
+                if (data?.[0]?.id)
+                    fetchPatient(data[0]?.id);
+            })
+        }
     }, [id]);
 
     const handleOpen = () => {
@@ -108,7 +121,7 @@ const PatientPage: React.FC = () => {
             </Container>
           ) : (
             <StyledEmptyListMessage>
-                Select Some Patient From The list, Or add new Patient to start.
+                <Loader />
             </StyledEmptyListMessage>
           )}
           <PatientsPanel />
