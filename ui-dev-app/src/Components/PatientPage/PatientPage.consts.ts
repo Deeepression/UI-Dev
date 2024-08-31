@@ -14,3 +14,11 @@ export enum PostRanges {
   LAST_MONTH = 'Last Month',
   ALL = 'All'
 }
+
+export type RefetchRange = 'One Hour' | 'One Day' | 'One Week';
+
+export enum RefetchRanges {
+  ONE_HOUR = 'One Hour',
+  ONE_DAY = 'One Day',
+  ONE_WEEK = 'One Week',
+}

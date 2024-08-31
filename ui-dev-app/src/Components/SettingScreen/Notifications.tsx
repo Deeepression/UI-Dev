@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { useState } from 'react'
 import {
   Button,
   Card,
@@ -6,21 +7,25 @@ import {
   CardContent,
   CardHeader,
   Divider,
+  FormControl,
   FormControlLabel,
   FormGroup,
-  Stack,
-  Typography,
   Grid,
+  MenuItem,
+  paperClasses,
+  Select,
+  Stack,
   Switch,
-  TextField
+  TextField,
+  Typography
 } from '@mui/material'
-import { paperClasses } from '@mui/material'
-import { useState } from 'react'
+import { RefetchRange, RefetchRanges } from '../PatientPage/PatientPage.consts'
 
 export function Notifications (): React.JSX.Element {
   const [email, setEmails] = useState({ value: 'example@example.com' })
   const [phone, setPhones] = useState({ value: '+1234567890' })
   const [isEditing, setIsEditing] = useState(false)
+  const [filter, setFilter] = useState<RefetchRange>(RefetchRanges.ONE_HOUR);
 
   const handleChange = (type: string, value: string) => {
     if (type === 'email') {
@@ -88,6 +93,22 @@ export function Notifications (): React.JSX.Element {
               </Stack>
             </Grid>
           </Grid>
+        </CardContent>
+        <CardContent>
+          <FormControl variant="outlined" style={{ minWidth: 120, marginBottom: '20px' }}>
+            <Typography variant="h6">Refetch New Posts Scheduler</Typography>
+            <Select
+              labelId="date-filter-label"
+              value={filter}
+              disabled={!isEditing}
+              onChange={(e) => setFilter(e.target.value as RefetchRange)}
+              label="Refetch New Posts Scheduler"
+            >
+              <MenuItem value="One Hour">One Hour</MenuItem>
+              <MenuItem value="One Day">One Day</MenuItem>
+              <MenuItem value="One Week">One Week</MenuItem>
+            </Select>
+          </FormControl>
         </CardContent>
         <Divider/>
         <CardActions sx={{ justifyContent: 'flex-end' }}>
