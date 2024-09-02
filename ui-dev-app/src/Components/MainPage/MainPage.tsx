@@ -43,7 +43,7 @@ const MainPage = () => {
         <Button component={RouterLink} to="/patient" variant="contained" sx={{ mr: 2, backgroundColor: '#ff4081' }}>
           Get Started
         </Button>
-        <Button variant="outlined" sx={{ color: 'white', borderColor: 'white' }}>
+        <Button component={RouterLink} to="/aboutus" variant="outlined" sx={{ color: 'white', borderColor: 'white' }}>
           Learn More
         </Button>
       </Box>
