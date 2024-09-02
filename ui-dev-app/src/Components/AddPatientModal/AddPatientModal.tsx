@@ -1,6 +1,7 @@
 import React, { useReducer } from 'react'
 import { Box, Button, Modal, TextField, Typography } from '@mui/material'
 import { AddPatientModalProps, Patient } from '../PatientsPanel/Patients.model'
+import { useNavigate } from 'react-router-dom'
 
 const initialState: Partial<Patient> = {
     patientName: '',
@@ -27,16 +28,19 @@ const reducer = (state: Partial<Patient>, action: { type: any; payload?: any; })
 };
 
 export const AddPatientModal: React.FC<AddPatientModalProps> = ({ open, handleClose, addPatient }) => {
+    const navigate = useNavigate();
     const [state, dispatch] = useReducer(reducer, initialState);
 
-    const addPatientClick = () => {
-        addPatient({
+    const addPatientClick = async () => {
+        const id = await addPatient({
             patientName: state.patientName,
             age: state.age,
             notes: state.notes,
             socialMediaLink: state.socialMediaLink
         });
         resetState();
+        navigate(`/patient/${id}`);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
     const handleCloseClick = () => {

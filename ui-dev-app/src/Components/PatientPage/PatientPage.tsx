@@ -19,6 +19,7 @@ const PatientPage: React.FC = () => {
     const [patient, setPatient] = useState<Patient | null>(null);
     const [open, setOpen] = useState(false);
     const [filter, setFilter] = useState<PostRange>(PostRanges.ALL);
+    const [ isLoading, setIsLoading ] = useState(false);
 
     useEffect(() => {
         const fetchPatient = async (userId: string) => {
@@ -68,12 +69,14 @@ const PatientPage: React.FC = () => {
     };
 
     const handleFetchPosts = async () => {
+        setIsLoading(true);
         const response = await fetch(`http://localhost:8080/api/patients/${id}/fetchPosts`);
 
         if (response.ok) {
             const updatedPatient = await response.json();
             setPatient(updatedPatient);
         }
+        setIsLoading(false);
     };
 
     return (
@@ -98,6 +101,9 @@ const PatientPage: React.FC = () => {
                         </Select>
                     </FormControl>
                 </UserHeaderWrapper>
+                { isLoading ? (
+                  <Loader />
+                ): (
                 <Grid container spacing={3}>
                     {filterPosts(patient.posts, filter).map((post: Post) => (
                       <Grid lg={4} md={6} xs={12} key={post.id}>
@@ -105,6 +111,7 @@ const PatientPage: React.FC = () => {
                       </Grid>
                     ))}
                 </Grid>
+                )}
                 <StyledButtonsWrapper>
                     <Button sx={{ textTransform: 'none' }} color="inherit" variant="outlined" startIcon={<PostAddIcon />} onClick={handleOpen}>
                         Add Post

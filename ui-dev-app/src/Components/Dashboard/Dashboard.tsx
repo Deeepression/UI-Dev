@@ -36,6 +36,7 @@ const Dashboard: React.FC = () => {
 
   const PatientsStatuses = Object.keys(statusData)
   const PatientsStatusesAmount = Object.values(statusData)
+  const statuses = ["GOOD", "MEDIUM", "BAD"];
 
   const prepareChartData = (patientsData: Patient[]) => {
     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
@@ -79,7 +80,7 @@ const Dashboard: React.FC = () => {
             <ChartTable chartSeries={chartSeries} sx={{ height: '100%', borderRadius: '20px' }}/>
           </Grid>
           <Grid lg={4} md={6} xs={12}>
-            <TrafficPie chartSeries={PatientsStatusesAmount} labels={PatientsStatuses}
+            <TrafficPie chartSeries={PatientsStatusesAmount} labels={statuses}
                         sx={{ height: '100%', borderRadius: '20px' }}/>
           </Grid>
         </Grid>

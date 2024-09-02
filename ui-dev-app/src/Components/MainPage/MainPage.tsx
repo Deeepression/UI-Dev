@@ -19,7 +19,7 @@ const MainPage = () => {
       }}
     >
       <Typography variant="h2" sx={{ mb: 2, fontWeight: 'bold', justifyContent: 'center', flexDirection: 'column' }}>
-        Empowering Psychiatrists with AI-Driven Insights
+        Leveraging AI to Support Mental Wellness
       </Typography>
       <Typography variant="h5" sx={{ mb: 4 }}>
         Track patients' well-being and receive real-time alerts for potential suicide risks based on their social media

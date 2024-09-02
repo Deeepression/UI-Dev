@@ -45,6 +45,7 @@ const PatientsPanel: React.FC = () => {
     const newPatient = await response.json()
     setPatients([...patients, newPatient])
     handleClose()
+    return newPatient.id;
   }
 
   const deletePatient = async (id: string) => {

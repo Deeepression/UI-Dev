@@ -11,7 +11,7 @@ export interface Patient {
 export type AddPatientModalProps = {
     open: boolean;
     handleClose: () => void;
-    addPatient: (p: Partial<Patient>) => void;
+    addPatient: (p: Partial<Patient>) => Promise<string>;
 }
 
 export type PatientsListProps = {
